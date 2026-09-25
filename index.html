@@ -1,63 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Track Example</title>
+    <title>Video Subtitles</title>
 </head>
 
 <body>
 
     <div>
+        <label for="language">Select Subtitle Language:</label>
 
-    <video controls width="600">
+        <select id="language">
+            <option value="0">English</option>
+            <option value="1">Telugu</option>
+            <option value="2">Hindi</option>
+        </select>
+    </div>
 
-        <source src="selfone.mp4" type="video/mp4">
+    <br>
 
-        <track
-            src="self.vtt"
-            kind="subtitles"
-            srclang="en"
-            label="English"
-            default>
-                 
-   
+    <div>
+        <video id="myVideo" controls width="600">
 
-    </video>
- </div>
-  <div>
-    <video controls width="600">
+            <source src="selfone.mp4" type="video/mp4">
 
-        <source src="selfone.mp4" type="video/mp4">
+            <track
+                src="self.vtt"
+                kind="subtitles"
+                srclang="en"
+                label="English">
 
-        <track
-            src="selftel.vtt"
-            kind="subtitles"
-            srclang="te"
-            label="Telugu"
-            default>
-        
-        
-           
-   
+            <track
+                src="selftel.vtt"
+                kind="subtitles"
+                srclang="te"
+                label="Telugu">
 
-    </video>
- </div>
-  <div>
-    <video controls width="600">
+            <track
+                src="selfhin.vtt"
+                kind="subtitles"
+                srclang="hi"
+                label="Hindi">
 
-        <source src="selfone.mp4" type="video/mp4">
+        </video>
+    </div>
 
-        <track
-            src="selfhin.vtt"
-            kind="subtitles"
-            srclang="hi"
-            label="Hindi"
-            default>
-        
-        
-           
-   
+    <script>
 
-    </video>
- </div>
+        const video = document.getElementById("myVideo");
+        const language = document.getElementById("language");
+
+        language.addEventListener("change", function () {
+
+            const tracks = video.textTracks;
+
+            // Turn OFF all subtitles
+            for (let i = 0; i < tracks.length; i++) {
+                tracks[i].mode = "disabled";
+            }
+
+            // Turn ON selected subtitle
+            tracks[language.value].mode = "showing";
+
+        });
+
+        // Show English subtitles initially
+        video.textTracks[0].mode = "showing";
+
+    </script>
+
 </body>
 </html>
