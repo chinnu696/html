@@ -1,0 +1,22 @@
+<html>
+<head>
+ <script>
+   function addnum()
+   {
+   n1=parseInt(document.getElementById("num1").value)
+   n2=parseInt(document.getElementById("num2").value)
+   document.getElementById("res").value=n1+n2
+   }
+   
+   </script>
+   </head>
+   <body>
+   <form>
+   number1<input type=text id="num1">
+   number2<input type=text id="num2">
+   Result<input type=text  id="res">
+   <input type=button value=click onclick="addnum()">
+  </form>
+ <div id=result></div>
+</body>
+</html> 
